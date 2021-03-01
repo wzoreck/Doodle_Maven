@@ -52,7 +52,7 @@
       </VBox>
       <HBox fx:id="hboxActions" alignment="TOP_CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Novo usuário">
+            <Button mnemonicParsing="false" onAction="#novoUsuario" text="Novo usuário">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>

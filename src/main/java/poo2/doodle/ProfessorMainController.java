@@ -11,10 +11,10 @@ public class ProfessorMainController {
 	Professor professor = null;
 	private TextArea txtNome;
 	
-	public ProfessorMainController(Professor professor) {
-		this.professor = professor;
-		txtNome.setText(professor.getNome());
-	}
+//	public ProfessorMainController(Professor professor) {
+//		this.professor = professor;
+//		txtNome.setText(professor.getNome());
+//	}
 	
 	@FXML
 	private void voltar() {

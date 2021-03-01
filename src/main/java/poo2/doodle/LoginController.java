@@ -50,7 +50,7 @@ public class LoginController {
 							
 							System.out.println("Encontrou");
 							// Ver com passar objeto ainda!!
-							ProfessorMainController p = new ProfessorMainController(professor);
+//							ProfessorMainController p = new ProfessorMainController(professor);
 							App.setRoot("professorMain");
 							break;
 						}
@@ -72,7 +72,11 @@ public class LoginController {
 	
 	@FXML
 	private void novoUsuario() {
-		
+		try {
+			App.setRoot("cadastroUsuario");
+		} catch (IOException e) {
+			System.err.println("Erro ao carregar a janela cadastroUsuario");
+		}
 	}
 	
 	private void buscarUsuariosBD() {
