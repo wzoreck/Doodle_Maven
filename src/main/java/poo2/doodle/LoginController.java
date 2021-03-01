@@ -14,7 +14,9 @@ import poo2.doodle.ihc.AlertaFX;
 
 public class LoginController {
 	
+	@FXML
 	private TextField txtUsuario;
+	@FXML
 	private PasswordField txtPasswd;
 	
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -26,6 +28,8 @@ public class LoginController {
 	@FXML
 	private void login() {
 		try {
+			
+			buscarUsuariosBD();
 			
 			if (txtUsuario.getText().isBlank()) {
 				AlertaFX.alerta("Campo usuário em branco");
@@ -43,18 +47,21 @@ public class LoginController {
 						
 						if (pessoa.getTipoPessoa().contentEquals("professor")) {
 							professor = (Professor) pessoa;
-							// Passar objeto professor ainda!!! 
+							
+							System.out.println("Encontrou");
+							// Ver com passar objeto ainda!!
+							ProfessorMainController p = new ProfessorMainController(professor);
 							App.setRoot("professorMain");
 							break;
 						}
-						
 					}
 				}
 			}
 			
-			App.setRoot("main");
+			System.out.println("Nao encontrou");
+			
 		} catch (IOException e) {
-			System.err.println("Erro ao carregar a janela principal Main");
+			System.err.println("Erro ao carregar a janela professorMain");
 		}
 	}
 	
@@ -66,5 +73,12 @@ public class LoginController {
 	@FXML
 	private void novoUsuario() {
 		
+	}
+	
+	private void buscarUsuariosBD() {
+		professores = professorDAO.listar(0);
+		pessoas = new ArrayList<Pessoa>();
+		for (Professor p : professores)
+			pessoas.add(p);
 	}
 }
