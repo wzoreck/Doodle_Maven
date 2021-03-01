@@ -14,12 +14,12 @@
          <children>
             <HBox alignment="BOTTOM_CENTER">
                <children>
-                  <Label text="E-mail">
+                  <Label text="Usuário">
                      <padding>
                         <Insets bottom="3.0" />
                      </padding>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="txtUsuario">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -31,8 +31,11 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label text="Senha" />
-                  <PasswordField>
+                  <Label text="Senha">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin></Label>
+                  <PasswordField fx:id="txtPasswd">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -54,7 +57,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" text="Sair">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
