@@ -1,38 +1,28 @@
 package poo2.doodle;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    private static Scene scene;
+	private static Stage stage;
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 500, 500);
-        stage.setScene(scene);
-        stage.show();
-    }
+	@Override
+	public void start(Stage stage) {
+		this.stage = stage;
+		stage.setScene(FXMLUtil.loadScene("login"));
+		stage.show();
+	}
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
+	static void setRoot(String fxml) {
+		stage.setScene(FXMLUtil.loadScene(fxml));
+	}
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
-    public static void main(String[] args) {
-        launch();
-    }
+	public static void main(String[] args) {
+		launch();
+	}
 
 }
