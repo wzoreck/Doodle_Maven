@@ -23,8 +23,11 @@ public class LoginController {
 	private ArrayList<Professor> professores = new ArrayList<Professor>();
 	private Professor professor = null;
 	private ProfessorDAO professorDAO = new ProfessorDAO();
+	
+	public LoginController() {
+		App.setResizable(true);
+	}
 
-	// "realizar login" altera para a tela principal
 	@FXML
 	private void login() {
 		buscarUsuariosBD();
@@ -48,7 +51,6 @@ public class LoginController {
 
 						System.out.println("Encontrou");
 						// Ver com passar objeto ainda!!
-//							ProfessorMainController p = new ProfessorMainController(professor);
 						App.setRoot("professorMain");
 						break;
 					}
@@ -66,9 +68,7 @@ public class LoginController {
 
 	@FXML
 	private void novoUsuario() {
-		Stage stage = new Stage();
-		stage.setScene(FXMLUtil.loadScene("cadastroUsuario"));
-		stage.show();
+		App.setRoot("cadastroUsuario");
 	}
 
 	private void buscarUsuariosBD() {

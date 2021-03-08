@@ -1,5 +1,15 @@
 package poo2.doodle;
 
-public class CadastroUsuarioController {
+import javafx.fxml.FXML;
 
+public class CadastroUsuarioController {
+	
+	public CadastroUsuarioController() {
+		App.setResizable(false);
+	}
+
+	@FXML
+	private void voltar() {
+		App.setRoot("login");
+	}
 }

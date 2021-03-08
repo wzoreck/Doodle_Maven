@@ -3,9 +3,6 @@ package poo2.doodle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
 	private static Stage stage;
@@ -14,6 +11,7 @@ public class App extends Application {
 	public void start(Stage stage) {
 		this.stage = stage;
 		stage.setScene(FXMLUtil.loadScene("login"));
+		stage.setResizable(true);
 		stage.show();
 	}
 
@@ -24,5 +22,8 @@ public class App extends Application {
 	public static void main(String[] args) {
 		launch();
 	}
-
+	
+	public static void setResizable(Boolean value) {
+		stage.setResizable(value);
+	}
 }
