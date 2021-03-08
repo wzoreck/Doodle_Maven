@@ -58,7 +58,6 @@ public class LoginController {
 			}
 		}
 
-		System.out.println("Nao encontrou");
 	}
 
 	@FXML
