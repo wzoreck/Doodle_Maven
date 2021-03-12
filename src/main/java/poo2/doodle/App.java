@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import poo2.doodle.entidades.Professor;
 
 public class App extends Application {
 
@@ -28,8 +29,33 @@ public class App extends Application {
 	}
 
 	private void consumeAPI(List<String> users) {
-		for (String user : users)
-			System.out.println(user);
+		String username = null;
+		String password = null;
+		
+		// forma mais simples e não recomendavel de se consumir um JSON
+		
+		for (String line : users) {
+			if (line.contains("username")) {
+				username = processJSONLine(line);
+				System.out.println(username);
+			}
+			
+			if (line.contains("password")) {
+				password = processJSONLine(line);
+				System.out.println(password);
+			}
+			
+			Professor professor = new Professor(username, password);
+		}
+	}
+
+	private String processJSONLine(String line) {
+		String[] divideLine = line.split(":");
+		String content = divideLine[1];
+		content = content.replace(",", " ");
+		content = content.replace("\"", " ");
+		content = content.trim();
+		return content;
 	}
 
 	private List<String> consultaAPI() {

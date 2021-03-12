@@ -18,6 +18,10 @@ public class Professor extends Pessoa {
 		this.salario = salario;
 		this.cargaHorariaSemanal = cargaHorariaSemanal;
 	}
+	
+	public Professor(String nome, String passwd) {
+		super(nome, passwd);
+	}
 
 	public void adicionaCursos() {
 		CursoDAO cursoDAO = new CursoDAO();

@@ -31,6 +31,11 @@ public abstract class Pessoa {
 			this.id = proxID;
 		}
 	}
+	
+	public Pessoa(String nome, String passwd) {
+		this.nome = nome;
+		this.passwd = passwd;
+	}
 
 	public boolean validaUsuario(String login, String passwd) {
 		if (this.login.contentEquals(login) && this.passwd.contentEquals(passwd))
