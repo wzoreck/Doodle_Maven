@@ -1,8 +1,9 @@
-package poo2.doodle;
+package poo2.doodle.controllers;
 
 import javafx.fxml.FXML;
+import poo2.doodle.App;
 
-public class CadastroCursoController {
+public class CursoController {
 	
 	@FXML
 	private void voltar() {

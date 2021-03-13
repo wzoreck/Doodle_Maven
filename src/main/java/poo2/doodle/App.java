@@ -7,10 +7,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
+import poo2.doodle.db.TeacherDAO;
+import poo2.doodle.entities.Teacher;
 
 public class App extends Application {
 
@@ -45,12 +45,11 @@ public class App extends Application {
 				password = processJSONLine(line);
 				System.out.println(password);
 				
-				Teste professor = new Teste(username, password);
-
-				EntityManager em = ConnDB.getEntityManager();
-				em.getTransaction().begin();
-				em.persist(professor);
-				em.getTransaction().commit();
+				Teacher teacher = new Teacher();
+				teacher.setName(username);
+				teacher.setPassword(password);
+				teacher.setId(10);
+				new TeacherDAO().persist(teacher);
 			}
 		}
 	}
@@ -84,7 +83,7 @@ public class App extends Application {
 		return result;
 	}
 	
-	static void setRoot(String fxml) {
+	public static void setRoot(String fxml) {
 		stage.setScene(FXMLUtil.loadScene(fxml));
 	}
 
