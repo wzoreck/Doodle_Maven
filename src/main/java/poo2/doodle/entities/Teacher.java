@@ -12,11 +12,15 @@ public class Teacher {
 	private String password;
 	private String name;
 	private String email;
-//	private List<Course> courses = null;
 
 	public Teacher() {
 	}
 
+	public Teacher(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
 	public Teacher(String username, String password, String name, String email) {
 		this.username = username;
 		this.password = password;
@@ -56,16 +60,6 @@ public class Teacher {
 		this.email = email;
 	}
 	
-	
-
-//	public List<Course> getCourses() {
-//		return courses;
-//	}
-//
-//	public void setCourses(List<Course> courses) {
-//		this.courses = courses;
-//	}
-
 	public int getId() {
 		return id;
 	}

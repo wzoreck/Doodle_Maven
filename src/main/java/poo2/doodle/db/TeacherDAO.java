@@ -2,6 +2,7 @@ package poo2.doodle.db;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
 import poo2.doodle.entities.Teacher;
@@ -11,13 +12,20 @@ public class TeacherDAO implements InterfaceDAO<Teacher> {
 	@Override
 	public void persist(Teacher teacher) {
 		EntityManager em = UtilDB.getEntityManager();
-		em.getTransaction().begin();
-		System.out.println("Entrou");
-		em.persist(teacher);
-		System.out.println("Persistiu");
-		
-		em.getTransaction().commit();
-
+		try {
+			em.getTransaction().begin();
+			em.persist(teacher);
+			em.getTransaction().commit();
+		} catch (EntityExistsException e) {
+			em.getTransaction().rollback();
+			Teacher original = get(teacher.getId());
+			em.getTransaction().begin();
+			original.setUsername(teacher.getUsername());
+			original.setPassword(teacher.getPassword());
+			original.setName(teacher.getName());
+			original.setEmail(teacher.getEmail());
+			em.getTransaction().commit();
+		}
 	}
 
 	@Override
@@ -28,17 +36,17 @@ public class TeacherDAO implements InterfaceDAO<Teacher> {
 		em.getTransaction().commit();
 	}
 
-	public Teacher get(String username) {
+	@Override
+	public Teacher get(Object pk) {
 		EntityManager em = UtilDB.getEntityManager();
-		Teacher teacher = em.find(Teacher.class, username);
+		Teacher teacher = em.find(Teacher.class, pk);
 		return teacher;
 	}
 
 	@Override
 	public List<Teacher> getAll() {
 		EntityManager em = UtilDB.getEntityManager();
-//		List<Teacher> teacher = em.createNativeQuery("SELECT * FROM Teacher").getResultList();
-		return null;
+		List<Teacher> teachers = em.createQuery("SELECT u FROM Teacher u", Teacher.class).getResultList();
+		return teachers;
 	}
-
 }
