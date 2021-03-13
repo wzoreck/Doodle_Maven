@@ -7,10 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import poo2.doodle.bd.ProfessorDAO;
 import poo2.doodle.entidades.Pessoa;
 import poo2.doodle.entidades.Professor;
-import poo2.doodle.ihc.AlertaFX;
 
 public class LoginController {
 
@@ -22,8 +20,7 @@ public class LoginController {
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private ArrayList<Professor> professores = new ArrayList<Professor>();
 	private Professor professor = null;
-	private ProfessorDAO professorDAO = new ProfessorDAO();
-	
+
 	public LoginController() {
 		App.setResizable(true);
 	}
@@ -33,12 +30,12 @@ public class LoginController {
 		buscarUsuariosBD();
 
 		if (txtUsuario.getText().isBlank()) {
-			AlertaFX.alerta("Campo usuário em branco");
+//			AlertaFX.alerta("Campo usuário em branco");
 			return;
 		}
 
 		if (txtPasswd.getText().isBlank()) {
-			AlertaFX.alerta("Campo senha em branco");
+//			AlertaFX.alerta("Campo senha em branco");
 			return;
 		}
 
@@ -71,7 +68,7 @@ public class LoginController {
 	}
 
 	private void buscarUsuariosBD() {
-		professores = professorDAO.listar(0);
+//		professores = professorDAO.listar(0);
 		pessoas = new ArrayList<Pessoa>();
 		for (Professor p : professores)
 			pessoas.add(p);

@@ -51,8 +51,6 @@ public class App extends Application {
 				em.getTransaction().begin();
 				em.persist(professor);
 				em.getTransaction().commit();
-				em.close();
-				ConnDB.closeConn();
 			}
 		}
 	}
@@ -85,10 +83,6 @@ public class App extends Application {
 
 		return result;
 	}
-
-//	public static void main(String[] args) {
-//		launch();
-//	}
 	
 	static void setRoot(String fxml) {
 		stage.setScene(FXMLUtil.loadScene(fxml));

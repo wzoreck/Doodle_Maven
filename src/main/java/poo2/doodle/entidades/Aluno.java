@@ -3,7 +3,6 @@ package poo2.doodle.entidades;
 import java.util.ArrayList;
 import java.util.Date;
 
-import poo2.doodle.bd.AlunoDAO;
 import poo2.doodle.forum.Forum;
 import poo2.doodle.forum.Pergunta;
 
@@ -16,10 +15,10 @@ public class Aluno extends Pessoa {
 		this.matriculado = false;
 	}
 	
-	public void adicionaCursos() {
-		AlunoDAO alunoDAO = new AlunoDAO();
-		this.cursos = alunoDAO.getCursos(this.getId());
-	}
+//	public void adicionaCursos() {
+//		AlunoDAO alunoDAO = new AlunoDAO();
+//		this.cursos = alunoDAO.getCursos(this.getId());
+//	}
 	
 	public void perguntaForum(Curso curso, int idForum, String tituloPergunta, String pergunta) {
 		ArrayList<Forum> foruns = null;
