@@ -7,9 +7,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
-import poo2.doodle.entidades.Professor;
 
 public class App extends Application {
 
@@ -31,21 +32,28 @@ public class App extends Application {
 	private void consumeAPI(List<String> users) {
 		String username = null;
 		String password = null;
-		
+
 		// forma mais simples e não recomendavel de se consumir um JSON
-		
+
 		for (String line : users) {
 			if (line.contains("username")) {
 				username = processJSONLine(line);
 				System.out.println(username);
 			}
-			
+
 			if (line.contains("password")) {
 				password = processJSONLine(line);
 				System.out.println(password);
+				
+				Teste professor = new Teste(username, password);
+
+				EntityManager em = ConnDB.getEntityManager();
+				em.getTransaction().begin();
+				em.persist(professor);
+				em.getTransaction().commit();
+				em.close();
+				ConnDB.closeConn();
 			}
-			
-			Professor professor = new Professor(username, password);
 		}
 	}
 
@@ -78,12 +86,12 @@ public class App extends Application {
 		return result;
 	}
 
+//	public static void main(String[] args) {
+//		launch();
+//	}
+	
 	static void setRoot(String fxml) {
 		stage.setScene(FXMLUtil.loadScene(fxml));
-	}
-
-	public static void main(String[] args) {
-		launch();
 	}
 
 	public static void setResizable(Boolean value) {

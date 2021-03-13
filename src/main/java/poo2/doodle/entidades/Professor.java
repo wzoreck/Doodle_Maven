@@ -3,14 +3,21 @@ package poo2.doodle.entidades;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import poo2.doodle.bd.CursoDAO;
 import poo2.doodle.forum.Forum;
 import poo2.doodle.forum.Pergunta;
 import poo2.doodle.forum.Resposta;
 
+//@Entity
 public class Professor extends Pessoa {
 	private float salario;
 	private int cargaHorariaSemanal;
+
+	public Professor() {
+		super();
+	}
 
 	public Professor(String nome, String email, Date dataNascimento, String login, String passwd, float salario,
 			int cargaHorariaSemanal, boolean contID) {
@@ -18,7 +25,7 @@ public class Professor extends Pessoa {
 		this.salario = salario;
 		this.cargaHorariaSemanal = cargaHorariaSemanal;
 	}
-	
+
 	public Professor(String nome, String passwd) {
 		super(nome, passwd);
 	}
@@ -27,7 +34,7 @@ public class Professor extends Pessoa {
 		CursoDAO cursoDAO = new CursoDAO();
 		this.cursos = cursoDAO.listar(this.getId());
 	}
-	
+
 	public void criaCurso(String nome, Date data) {
 		for (int i = 0; i < this.cursos.size(); i++)
 			if (this.cursos.get(i).getNome().contentEquals(nome))
@@ -45,7 +52,7 @@ public class Professor extends Pessoa {
 	public void removeCurso(int id) {
 		CursoDAO cursoDAO = new CursoDAO();
 		for (Curso curso : cursos) {
-			if(curso.getID() == id) {
+			if (curso.getID() == id) {
 				cursoDAO.remover(curso);
 				this.cursos.remove(curso);
 				return;
@@ -59,13 +66,13 @@ public class Professor extends Pessoa {
 			if (curso.getID() == idCurso) {
 				curso.setNome(nome);
 				curso.setDataInicio(data);
-				
+
 				cursoDAO.atualizar(curso, this.getId());
 				break;
 			}
 		}
 	}
-	
+
 	public float getSalario() {
 		return salario;
 	}
@@ -95,7 +102,7 @@ public class Professor extends Pessoa {
 		ArrayList<Forum> foruns = new ArrayList<Forum>();
 		ArrayList<Pergunta> perguntas = new ArrayList<Pergunta>();
 		foruns = curso.getConteudos();
-		
+
 		for (Forum forum : foruns) {
 			if (forum.getIDForum() == idForum) {
 				perguntas = forum.getPerguntas();

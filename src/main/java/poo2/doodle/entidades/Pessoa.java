@@ -4,12 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
 import poo2.doodle.forum.Forum;
 import poo2.doodle.forum.Pergunta;
 import poo2.doodle.forum.Resposta;
 
+//@MappedSuperclass
 public abstract class Pessoa {
+
 	private int id;
+//	@Id
 	private String nome;
 	private String email;
 	private Date dataNascimento;
@@ -18,6 +24,10 @@ public abstract class Pessoa {
 	protected ArrayList<Curso> cursos;
 	// Valor inicial baseado na quantidade de INSERTs iniciais em UtilBD
 	public static int proxID = 5;
+
+	public Pessoa() {
+
+	}
 
 	public Pessoa(String nome, String email, Date dataNascimento, String login, String passwd, boolean contID) {
 		this.nome = nome;
@@ -31,7 +41,7 @@ public abstract class Pessoa {
 			this.id = proxID;
 		}
 	}
-	
+
 	public Pessoa(String nome, String passwd) {
 		this.nome = nome;
 		this.passwd = passwd;
@@ -48,7 +58,7 @@ public abstract class Pessoa {
 		ArrayList<Forum> foruns = new ArrayList<Forum>();
 		ArrayList<Pergunta> perguntas = new ArrayList<Pergunta>();
 		foruns = curso.getConteudos();
-		
+
 		for (Forum forum : foruns) {
 			if (forum.getIDForum() == idForum) {
 				perguntas = forum.getPerguntas();
@@ -123,6 +133,22 @@ public abstract class Pessoa {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
+	
+	public ArrayList<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(ArrayList<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public static int getProxID() {
+		return proxID;
+	}
+
+	public static void setProxID(int proxID) {
+		Pessoa.proxID = proxID;
+	}
 
 	public String getTipoPessoa() {
 		return tipoPessoa();
@@ -130,4 +156,32 @@ public abstract class Pessoa {
 
 	// Metodo Abstrato
 	protected abstract String tipoPessoa();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+
+	
+	
 }
