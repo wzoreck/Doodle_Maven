@@ -14,12 +14,12 @@
          <children>
             <HBox alignment="BOTTOM_CENTER">
                <children>
-                  <Label text="Usuário">
+                  <Label text="Username">
                      <padding>
                         <Insets bottom="3.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="txtUsuario">
+                  <TextField fx:id="txtUsername">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -31,11 +31,11 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label text="Senha">
+                  <Label text="Password">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin></Label>
-                  <PasswordField fx:id="txtPasswd">
+                  <PasswordField fx:id="txtPassword">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>

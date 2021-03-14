@@ -18,9 +18,8 @@ public class TeacherDAO implements InterfaceDAO<Teacher> {
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
 			em.getTransaction().rollback();
-			Teacher original = get(teacher.getId());
+			Teacher original = get(teacher.getUsername());
 			em.getTransaction().begin();
-			original.setUsername(teacher.getUsername());
 			original.setPassword(teacher.getPassword());
 			original.setName(teacher.getName());
 			original.setEmail(teacher.getEmail());

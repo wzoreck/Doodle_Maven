@@ -7,8 +7,8 @@ import javax.persistence.Id;
 public class Teacher {
 
 	@Id
-	private int id;
 	private String username;
+
 	private String password;
 	private String name;
 	private String email;
@@ -20,7 +20,7 @@ public class Teacher {
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	public Teacher(String username, String password, String name, String email) {
 		this.username = username;
 		this.password = password;
@@ -58,14 +58,6 @@ public class Teacher {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	@Override

@@ -36,18 +36,18 @@ public class UtilDB {
 		if (entityManagerFactory != null)
 			entityManagerFactory.close();
 	}
-	
+
 	public static void initDB() {
-		for (Teacher teacher : consumeAPI(consultAPI())) {
-			System.out.println("Nome: " + teacher.getName() + " senha: " + teacher.getPassword() + " id: " + teacher.getId());
-			new TeacherDAO().persist(teacher);
-		}
 		Teacher teacherTest = new Teacher("test", "1234", "Test", "test@email.com");
 		new TeacherDAO().persist(teacherTest);
+		
+		for (Teacher teacher : consumeAPI(consultAPI())) {
+			new TeacherDAO().persist(teacher);
+		}
 	}
 
 	public static List<Teacher> consumeAPI(List<String> users) {
-		List<Teacher> result = new ArrayList<Teacher>();	
+		List<Teacher> result = new ArrayList<Teacher>();
 		String username = null;
 		String password = null;
 
@@ -59,13 +59,12 @@ public class UtilDB {
 			if (line.contains("password")) {
 				password = processJSONLine(line);
 				Teacher teacher = new Teacher();
-				teacher.setName(username);
+				teacher.setUsername(username);
 				teacher.setPassword(password);
-				teacher.setId(1000);
 				result.add(teacher);
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -95,7 +94,7 @@ public class UtilDB {
 //			Alert alert = AlertUtil.error("Erro", "Erro ao consumir a API!", "Erro ao consumir a API!", e);
 //			alert.showAndWait();
 		}
-		
+
 		return result;
 	}
 }
