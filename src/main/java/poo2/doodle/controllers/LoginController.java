@@ -1,25 +1,29 @@
 package poo2.doodle.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import poo2.doodle.AlertUtil;
 import poo2.doodle.App;
 import poo2.doodle.db.TeacherDAO;
 import poo2.doodle.entities.Teacher;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
 	@FXML
 	private TextField txtUsername;
 	@FXML
 	private PasswordField txtPassword;
-
-	public LoginController() {
-		App.setResizable(true);
-	}
 
 	@FXML
 	private void login() {
@@ -50,8 +54,18 @@ public class LoginController {
 			alert.showAndWait();
 			return;
 		}
-		App.setResizable(true);
-		App.setRoot("teacherMain");
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teacherMain.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			Stage stage = (Stage) txtUsername.getScene().getWindow();
+			stage.setScene(scene);
+			stage.setResizable(true);
+			stage.show();
+		} catch (IOException e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load teacherMain.fxml", e);
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
@@ -61,7 +75,23 @@ public class LoginController {
 
 	@FXML
 	private void newUser() {
-		App.setRoot("teacherRegistration");
+		try {
+			Stage stage = new Stage();
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teacherRegistration.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (IOException e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load teacherRegistration.fxml", e);
+			alert.showAndWait();
+		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// Executa quando o controlador é criado
+
 	}
 
 }

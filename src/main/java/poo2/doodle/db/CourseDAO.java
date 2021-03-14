@@ -19,8 +19,8 @@ public class CourseDAO implements InterfaceDAO<Course> {
 		} catch (EntityExistsException e) {
 			em.getTransaction().rollback();
 			Course original = get(course.getName());
-			original.setDescription(course.getDescription());
 			em.getTransaction().begin();
+			original.setDescription(course.getDescription());
 			em.getTransaction().commit();
 		}
 	}

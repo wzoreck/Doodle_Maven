@@ -3,7 +3,6 @@ package poo2.doodle.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import poo2.doodle.App;
 import poo2.doodle.db.TeacherDAO;
 import poo2.doodle.entities.Teacher;
 
@@ -14,13 +13,9 @@ public class TeacherRegistrationController {
 	@FXML
 	private PasswordField txtPassword;
 
-	public TeacherRegistrationController() {
-		App.setResizable(false);
-	}
-
 	@FXML
 	private void back() {
-		App.setRoot("login");
+//		App.setRoot("login");
 	}
 
 	@FXML
