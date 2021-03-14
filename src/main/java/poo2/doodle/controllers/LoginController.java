@@ -39,8 +39,7 @@ public class LoginController {
 		}
 
 		Teacher t = new TeacherDAO().get(username);
-		
-		
+
 		if (t == null) {
 			Alert alert = AlertUtil.info("Info!", "Info!", "Wrong username or password");
 			alert.showAndWait();
@@ -62,7 +61,7 @@ public class LoginController {
 
 	@FXML
 	private void newUser() {
-		App.setRoot("teacherRegistration ");
+		App.setRoot("teacherRegistration");
 	}
 
 }

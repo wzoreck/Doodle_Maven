@@ -11,6 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import javafx.scene.control.Alert;
+import poo2.doodle.AlertUtil;
+import poo2.doodle.entities.Course;
 import poo2.doodle.entities.Teacher;
 
 public class UtilDB {
@@ -38,12 +41,18 @@ public class UtilDB {
 	}
 
 	public static void initDB() {
-		Teacher teacherTest = new Teacher("test", "1234", "Test", "test@email.com");
-		new TeacherDAO().persist(teacherTest);
-		
 		for (Teacher teacher : consumeAPI(consultAPI())) {
 			new TeacherDAO().persist(teacher);
 		}
+
+		Teacher teacher1 = new Teacher("lucas", "1234", "Lucas", "lucas@email.com");
+		new TeacherDAO().persist(teacher1);
+
+		Course course1 = new Course("Programação Orientada a Objetos 2", "Disciplina do quarto semestre de 2020");
+		new CourseDAO().persist(course1);
+
+		teacher1.setCourse(course1);
+		new TeacherDAO().persist(teacher1);
 	}
 
 	public static List<Teacher> consumeAPI(List<String> users) {
@@ -91,8 +100,8 @@ public class UtilDB {
 
 			in.close();
 		} catch (Exception e) {
-//			Alert alert = AlertUtil.error("Erro", "Erro ao consumir a API!", "Erro ao consumir a API!", e);
-//			alert.showAndWait();
+			Alert alert = AlertUtil.error("Error", "Error when consuming API!", "Error when consuming API!", e);
+			alert.showAndWait();
 		}
 
 		return result;

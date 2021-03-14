@@ -1,7 +1,11 @@
 package poo2.doodle.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Teacher {
@@ -13,12 +17,16 @@ public class Teacher {
 	private String name;
 	private String email;
 
+	@ManyToMany
+	private List<Course> courses;
+
 	public Teacher() {
 	}
 
 	public Teacher(String username, String password) {
 		this.username = username;
 		this.password = password;
+		this.courses = new ArrayList<>();
 	}
 
 	public Teacher(String username, String password, String name, String email) {
@@ -26,6 +34,7 @@ public class Teacher {
 		this.password = password;
 		this.name = name;
 		this.email = email;
+		this.courses = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -58,6 +67,19 @@ public class Teacher {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	// My methods
+	public void setCourse(Course course) {
+		this.courses.add(course);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
+import poo2.doodle.entities.Course;
 import poo2.doodle.entities.Teacher;
 
 public class TeacherDAO implements InterfaceDAO<Teacher> {
@@ -23,6 +24,9 @@ public class TeacherDAO implements InterfaceDAO<Teacher> {
 			original.setPassword(teacher.getPassword());
 			original.setName(teacher.getName());
 			original.setEmail(teacher.getEmail());
+			original.getCourses().clear();
+			for (Course c : teacher.getCourses())
+				original.getCourses().add(c);
 			em.getTransaction().commit();
 		}
 	}

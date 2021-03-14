@@ -8,12 +8,12 @@ import poo2.doodle.db.TeacherDAO;
 import poo2.doodle.entities.Teacher;
 
 public class TeacherRegistrationController {
-	
+
 	@FXML
 	private TextField txtUsername;
 	@FXML
 	private PasswordField txtPassword;
-	
+
 	public TeacherRegistrationController() {
 		App.setResizable(false);
 	}
@@ -22,12 +22,12 @@ public class TeacherRegistrationController {
 	private void back() {
 		App.setRoot("login");
 	}
-	
+
 	@FXML
 	private void register() {
 		String username = txtUsername.getText();
 		String password = txtPassword.getText();
-		
+
 		if (username.isBlank()) {
 			// Alerta
 			return;

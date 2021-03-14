@@ -12,6 +12,7 @@ public class App extends Application {
 		this.stage = stage;
 		stage.setScene(FXMLUtil.loadScene("login"));
 		stage.setResizable(true);
+		stage.setTitle("Doodle");
 		stage.show();
 	}
 
