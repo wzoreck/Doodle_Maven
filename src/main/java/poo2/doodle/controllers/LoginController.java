@@ -2,8 +2,10 @@ package poo2.doodle.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import poo2.doodle.AlertUtil;
 import poo2.doodle.App;
 import poo2.doodle.db.TeacherDAO;
 import poo2.doodle.entities.Teacher;
@@ -25,12 +27,14 @@ public class LoginController {
 		String password = txtPassword.getText();
 
 		if (username.isBlank()) {
-//			AlertaFX.alerta("Campo usuário em branco");
+			Alert alert = AlertUtil.info("Info!", "Info!", "Enter your username!");
+			alert.showAndWait();
 			return;
 		}
 
 		if (password.isBlank()) {
-//			AlertaFX.alerta("Campo senha em branco");
+			Alert alert = AlertUtil.info("Info!", "Info!", "Enter your password!");
+			alert.showAndWait();
 			return;
 		}
 
@@ -38,24 +42,26 @@ public class LoginController {
 		
 		
 		if (t == null) {
-			// Exception
+			Alert alert = AlertUtil.info("Info!", "Info!", "Wrong username or password");
+			alert.showAndWait();
 			return;
 		}
 		if (!t.getPassword().contentEquals(password)) {
-			// Exception
+			Alert alert = AlertUtil.info("Info!", "Info!", "Wrong username or password");
+			alert.showAndWait();
 			return;
 		}
 		App.setResizable(true);
-		App.setRoot("professorMain");
+		App.setRoot("teacherMain");
 	}
 
 	@FXML
-	private void sair() {
+	private void exit() {
 		Platform.exit();
 	}
 
 	@FXML
-	private void novoUsuario() {
+	private void newUser() {
 		App.setRoot("teacherRegistration ");
 	}
 
