@@ -13,7 +13,7 @@
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
          <children>
             <Label text="Username:" HBox.hgrow="NEVER" />
-            <TextField HBox.hgrow="NEVER">
+            <TextField fx:id="txtUsername" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -26,7 +26,7 @@
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
          <children>
             <Label text="Password:" HBox.hgrow="NEVER" />
-            <PasswordField HBox.hgrow="NEVER">
+            <PasswordField fx:id="txtPassword" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -39,7 +39,7 @@
       <HBox alignment="CENTER_RIGHT" layoutX="20.0" layoutY="20.0" VBox.vgrow="NEVER">
          <children>
             <Label text="Full Name:" HBox.hgrow="NEVER" />
-            <TextField HBox.hgrow="NEVER">
+            <TextField fx:id="txtName" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -52,7 +52,7 @@
       <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="80.0" VBox.vgrow="NEVER">
          <children>
             <Label text="E-mail:" HBox.hgrow="NEVER" />
-            <TextField HBox.hgrow="NEVER">
+            <TextField fx:id="txtEmail" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
