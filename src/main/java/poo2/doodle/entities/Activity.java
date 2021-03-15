@@ -9,6 +9,8 @@ public class Activity {
 	@Id
 	private String name;
 
+	private int nota;
+
 	public Activity() {
 	}
 
@@ -22,6 +24,14 @@ public class Activity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 
 	@Override

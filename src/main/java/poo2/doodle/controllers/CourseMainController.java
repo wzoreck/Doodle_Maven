@@ -7,9 +7,15 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import poo2.doodle.AlertUtil;
+import poo2.doodle.App;
 import poo2.doodle.db.ActivityDAO;
 import poo2.doodle.db.ContentDAO;
 import poo2.doodle.db.CourseDAO;
@@ -119,6 +125,40 @@ public class CourseMainController implements Initializable {
 		updateMyActivities();
 	}
 
+	@FXML
+	private void createNewContent() {
+		try {
+			CreateContentController.setCourse(course);
+			updateMyContents();
+			Stage stage = new Stage();
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("createContent.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load createContent.fxml", e);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void createNewActivity() {
+		try {
+			CreateActivityController.setCourse(course);
+			updateMyActivities();
+			Stage stage = new Stage();
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("createActivity.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load createActivity.fxml", e);
+			alert.showAndWait();
+		}
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		updateMyContents();

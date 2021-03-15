@@ -17,7 +17,11 @@ public class ActivityDAO implements InterfaceDAO<Activity> {
 			em.persist(activity);
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			System.out.println("Entrou na exception, mas não há o que alterar");
+			em.getTransaction().rollback();
+			Activity original = get(activity.getName());
+			em.getTransaction().begin();
+			original.setNota(activity.getNota());
+			em.getTransaction().commit();
 		}
 	}
 

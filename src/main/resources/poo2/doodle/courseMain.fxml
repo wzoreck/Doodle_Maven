@@ -19,7 +19,7 @@
                         <ListView fx:id="contentsList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Button fx:id="btnCreateNewContent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create New" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnCreateNewContent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNewContent" text="Create New" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -51,7 +51,7 @@
                         <ListView fx:id="activitiesList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Button fx:id="btnCreateNewActivitie" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create New" HBox.hgrow="ALWAYS">
+                              <Button fx:id="btnCreateNewActivitie" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNewActivity" text="Create New" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>

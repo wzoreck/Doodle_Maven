@@ -8,6 +8,8 @@ public class Content {
 
 	@Id
 	private String name;
+	
+	private int nota;
 
 	public Content() {
 	}
@@ -22,6 +24,14 @@ public class Content {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 
 	@Override

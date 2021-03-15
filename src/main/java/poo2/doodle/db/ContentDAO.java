@@ -17,7 +17,11 @@ public class ContentDAO implements InterfaceDAO<Content> {
 			em.persist(content);
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			System.out.println("Entrou na exception, mas não há o que alterar");
+			em.getTransaction().rollback();
+			Content original = get(content.getName());
+			em.getTransaction().begin();
+			original.setNota(content.getNota());
+			em.getTransaction().commit();
 		}
 	}
 

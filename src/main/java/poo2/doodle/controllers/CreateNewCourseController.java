@@ -1,15 +1,10 @@
 package poo2.doodle.controllers;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import poo2.doodle.AlertUtil;
-import poo2.doodle.App;
 import poo2.doodle.db.CourseDAO;
 import poo2.doodle.db.TeacherDAO;
 import poo2.doodle.entities.Course;
@@ -45,13 +40,13 @@ public class CreateNewCourseController {
 		}
 
 		Course c = new CourseDAO().get(courseName);
-		
+
 		if (c != null) {
 			Alert alert = AlertUtil.info("Info", "This curse alredy exists", "");
 			alert.showAndWait();
 			return;
 		}
-		
+
 		Course course = new Course(courseName, desescription);
 		new CourseDAO().persist(course);
 		teacher.setCourse(course);
