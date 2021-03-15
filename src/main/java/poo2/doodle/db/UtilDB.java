@@ -13,6 +13,8 @@ import javax.persistence.Persistence;
 
 import javafx.scene.control.Alert;
 import poo2.doodle.AlertUtil;
+import poo2.doodle.entities.Activity;
+import poo2.doodle.entities.Content;
 import poo2.doodle.entities.Course;
 import poo2.doodle.entities.Teacher;
 
@@ -50,6 +52,14 @@ public class UtilDB {
 
 		Course course1 = new Course("Programação Orientada a Objetos 2", "Disciplina do quarto semestre de 2020");
 		new CourseDAO().persist(course1);
+
+		Content content1 = new Content("Polimorfismo");
+		new ContentDAO().persist(content1);
+		course1.setContent(content1);
+
+		Activity activity1 = new Activity("Primeira Prova");
+		new ActivityDAO().persist(activity1);
+		course1.setActivitie(activity1);
 
 		teacher1.setCourse(course1);
 		new TeacherDAO().persist(teacher1);

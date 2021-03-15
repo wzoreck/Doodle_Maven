@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
+import poo2.doodle.entities.Activity;
+import poo2.doodle.entities.Content;
 import poo2.doodle.entities.Course;
 
 public class CourseDAO implements InterfaceDAO<Course> {
@@ -21,8 +23,16 @@ public class CourseDAO implements InterfaceDAO<Course> {
 			Course original = get(course.getName());
 			em.getTransaction().begin();
 			original.setDescription(course.getDescription());
+
+			original.getContents().clear();
+			for (Content c : course.getContents())
+				original.getContents().add(c);
+
+			original.getActivities().clear();
+			for (Activity a : course.getActivities())
+				original.getActivities().add(a);
+
 			em.getTransaction().commit();
-			System.out.println("Commitou");
 		}
 	}
 
