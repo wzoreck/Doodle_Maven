@@ -184,7 +184,7 @@ public class CourseMainController implements Initializable {
 	@FXML
 	private void editActivity() {
 		try {
-			String activityName = contentsList.getSelectionModel().getSelectedItem();
+			String activityName = activitiesList.getSelectionModel().getSelectedItem();
 			Activity activity = new ActivityDAO().get(activityName);
 			updateMyActivities();
 
@@ -206,14 +206,14 @@ public class CourseMainController implements Initializable {
 	@FXML
 	private void back() {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("courseMain.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teacherMain.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());
 			Stage stage = (Stage) btnCreateNewContent.getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(true);
 			stage.show();
 		} catch (IOException e) {
-			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load courseMain.fxml", e);
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load teacherMain.fxml", e);
 			alert.showAndWait();
 		}
 	}

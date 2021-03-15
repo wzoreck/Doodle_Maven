@@ -64,7 +64,7 @@ public class TeacherMainController implements Initializable {
 		if (teacher == null)
 			return;
 
-		if (teacher.getCourses() == null) {
+		if (teacher.getCourses() == null || teacher.getCourses().isEmpty()) {
 			btnDelete.setDisable(true);
 			btnAccess.setDisable(true);
 			btnEdit.setDisable(true);
