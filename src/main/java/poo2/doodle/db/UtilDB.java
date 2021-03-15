@@ -49,6 +49,9 @@ public class UtilDB {
 
 		Teacher teacher1 = new Teacher("lucas", "1234", "Lucas", "lucas@email.com");
 		new TeacherDAO().persist(teacher1);
+		// Verificar se é realizado um novo INSERT caso o usuario já exista 
+		Teacher teacher2 = new Teacher("lucas", "1234", "Lucas", "lucas@email.com");
+		new TeacherDAO().persist(teacher2);
 
 		Course course1 = new Course("Programação Orientada a Objetos 2", "Disciplina do quarto semestre de 2020");
 		new CourseDAO().persist(course1);

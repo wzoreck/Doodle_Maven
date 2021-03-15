@@ -1,0 +1,22 @@
+{
+    "user": {
+        "username": "local1",
+		"password": "local1"
+    }
+    "user": {
+        "username": "local3",
+		"password": "local3"
+    }
+    "user": {
+        "username": "local4",
+		"password": "local4"
+    }
+    "user": {
+        "username": "local5",
+		"password": "local5"
+    }
+    "user": {
+        "username": "local7",
+		"password": "local7"
+    }
+}

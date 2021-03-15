@@ -10,6 +10,12 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+	private static Thread loadFromFileToDB;
+	
+	public static void setLoadFromFileToDB(Thread loadFromFileToDB) {
+		App.loadFromFileToDB = loadFromFileToDB;
+	}
+
 	@Override
 	public void start(Stage stage) {
 		try {
@@ -19,6 +25,8 @@ public class App extends Application {
 			stage.setResizable(false);
 			stage.setTitle("Doodle");
 			stage.show();
+			
+			loadFromFileToDB.start();
 		} catch (IOException e) {
 			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load login.fxml", e);
 			alert.showAndWait();
