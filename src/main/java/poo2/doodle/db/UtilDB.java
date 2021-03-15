@@ -57,7 +57,7 @@ public class UtilDB {
 		new ContentDAO().persist(content1);
 		course1.setContent(content1);
 
-		Activity activity1 = new Activity("Primeira Prova");
+		Activity activity1 = new Activity("PrimeiraProva");
 		new ActivityDAO().persist(activity1);
 		course1.setActivitie(activity1);
 

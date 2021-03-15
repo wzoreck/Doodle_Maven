@@ -1,5 +1,6 @@
 package poo2.doodle.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +142,7 @@ public class CourseMainController implements Initializable {
 			alert.showAndWait();
 		}
 	}
-	
+
 	@FXML
 	private void createNewActivity() {
 		try {
@@ -155,6 +156,64 @@ public class CourseMainController implements Initializable {
 			stage.show();
 		} catch (Exception e) {
 			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load createActivity.fxml", e);
+			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void editContent() {
+		try {
+			String contentName = contentsList.getSelectionModel().getSelectedItem();
+			Content content = new ContentDAO().get(contentName);
+			updateMyContents();
+
+			EditContentController.setContent(content);
+
+			Stage stage = new Stage();
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editContent.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load editContent.fxml", e);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void editActivity() {
+		try {
+			String activityName = contentsList.getSelectionModel().getSelectedItem();
+			Activity activity = new ActivityDAO().get(activityName);
+			updateMyActivities();
+
+			System.out.println("Activity: " + activity.getName());
+			EditActivityController.setActivity(activity);
+
+			Stage stage = new Stage();
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editActivity.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+		} catch (Exception e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load editActivity.fxml", e);
+			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void back() {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("courseMain.fxml"));
+			Scene scene = new Scene(fxmlLoader.load());
+			Stage stage = (Stage) btnCreateNewContent.getScene().getWindow();
+			stage.setScene(scene);
+			stage.setResizable(true);
+			stage.show();
+		} catch (IOException e) {
+			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load courseMain.fxml", e);
 			alert.showAndWait();
 		}
 	}

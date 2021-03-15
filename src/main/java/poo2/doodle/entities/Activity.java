@@ -16,6 +16,7 @@ public class Activity {
 
 	public Activity(String name) {
 		this.name = name;
+		this.nota = 0;
 	}
 
 	public String getName() {
