@@ -108,13 +108,6 @@ public class TeacherMainController implements Initializable {
 			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load courseMain.fxml", e);
 			alert.showAndWait();
 		}
-		
-		updateMyCourses();
-	}
-
-	@FXML
-	private void acessarCurso() {
-//		App.setRoot("curso");
 	}
 
 	@FXML
@@ -122,11 +115,11 @@ public class TeacherMainController implements Initializable {
 		try {
 			CreateNewCourseController.setUser(teacher);
 
+			Stage stage = new Stage();
 			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("createNewCourse.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());
-			Stage stage = (Stage) btnDelete.getScene().getWindow();
 			stage.setScene(scene);
-			stage.setResizable(true);
+			stage.setResizable(false);
 			stage.show();
 		} catch (Exception e) {
 			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load createNewCourse.fxml", e);
@@ -137,9 +130,15 @@ public class TeacherMainController implements Initializable {
 	@FXML
 	private void editCourse() {
 		try {
+			String courseName = teacherCoursesList.getSelectionModel().getSelectedItem();
+			Course course = new CourseDAO().get(courseName);
+			updateMyCourses();
+			
+			EditCourseController.setCourse(course);
+			
+			Stage stage = new Stage();
 			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editCourse.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());
-			Stage stage = (Stage) btnDelete.getScene().getWindow();
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();

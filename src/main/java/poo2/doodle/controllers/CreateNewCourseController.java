@@ -61,17 +61,8 @@ public class CreateNewCourseController {
 
 	@FXML
 	private void exit() {
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teacherMain.fxml"));
-			Scene scene = new Scene(fxmlLoader.load());
-			Stage stage = (Stage) txtCourseName.getScene().getWindow();
-			stage.setScene(scene);
-			stage.setResizable(true);
-			stage.show();
-		} catch (IOException e) {
-			Alert alert = AlertUtil.error("Error!", "Error!", "Fail to load teacherMain.fxml", e);
-			alert.showAndWait();
-		}
+		Stage stage = (Stage) txtCourseName.getScene().getWindow();
+		stage.close();
 	}
 
 }

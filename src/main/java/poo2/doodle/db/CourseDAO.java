@@ -22,6 +22,7 @@ public class CourseDAO implements InterfaceDAO<Course> {
 			em.getTransaction().begin();
 			original.setDescription(course.getDescription());
 			em.getTransaction().commit();
+			System.out.println("Commitou");
 		}
 	}
 
