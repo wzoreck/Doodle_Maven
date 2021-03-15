@@ -89,9 +89,10 @@ public class TeacherMainController implements Initializable {
 		Course course = new CourseDAO().get(courseName);
 		teacher.getCourses().remove(course);
 		new TeacherDAO().persist(teacher);
+		new CourseDAO().remove(course);
 		updateMyCourses();
 	}
-	
+
 	@FXML
 	private void access() {
 		String courseName = teacherCoursesList.getSelectionModel().getSelectedItem();
@@ -133,9 +134,9 @@ public class TeacherMainController implements Initializable {
 			String courseName = teacherCoursesList.getSelectionModel().getSelectedItem();
 			Course course = new CourseDAO().get(courseName);
 			updateMyCourses();
-			
+
 			EditCourseController.setCourse(course);
-			
+
 			Stage stage = new Stage();
 			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editCourse.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());

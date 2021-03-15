@@ -10,6 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import poo2.doodle.db.ActivityDAO;
+import poo2.doodle.db.ContentDAO;
+import poo2.doodle.db.CourseDAO;
 import poo2.doodle.entities.Activity;
 import poo2.doodle.entities.Content;
 import poo2.doodle.entities.Course;
@@ -94,6 +97,26 @@ public class CourseMainController implements Initializable {
 			courseActivities.add(activity.getName());
 		}
 		activitiesList.setItems(FXCollections.observableArrayList(courseActivities));
+	}
+
+	@FXML
+	private void removeContent() {
+		String contentName = contentsList.getSelectionModel().getSelectedItem();
+		Content content = new ContentDAO().get(contentName);
+		course.getContents().remove(content);
+		new CourseDAO().persist(course);
+		new ContentDAO().remove(content);
+		updateMyContents();
+	}
+
+	@FXML
+	private void removeActivity() {
+		String activityName = activitiesList.getSelectionModel().getSelectedItem();
+		Activity activity = new ActivityDAO().get(activityName);
+		course.getActivities().remove(activity);
+		new CourseDAO().persist(course);
+		new ActivityDAO().remove(activity);
+		updateMyActivities();
 	}
 
 	@Override

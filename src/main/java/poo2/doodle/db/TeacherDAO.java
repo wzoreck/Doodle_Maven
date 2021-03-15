@@ -25,8 +25,10 @@ public class TeacherDAO implements InterfaceDAO<Teacher> {
 			original.setName(teacher.getName());
 			original.setEmail(teacher.getEmail());
 			original.getCourses().clear();
-			for (Course c : teacher.getCourses())
+			for (Course c : teacher.getCourses()) {
 				original.getCourses().add(c);
+				System.out.println("Curso: " + c.getName());
+			}
 			em.getTransaction().commit();
 		}
 	}
