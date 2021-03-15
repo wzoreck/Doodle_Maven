@@ -56,6 +56,8 @@ public class LoginController implements Initializable {
 		}
 
 		try {
+			TeacherMainController.setUser(t);
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("teacherMain.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());
 			Stage stage = (Stage) txtUsername.getScene().getWindow();

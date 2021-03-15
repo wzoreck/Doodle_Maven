@@ -76,9 +76,11 @@ public class Teacher {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
-	
+
 	// My methods
 	public void setCourse(Course course) {
+		if (courses == null)
+			courses = new ArrayList<>();
 		this.courses.add(course);
 	}
 
