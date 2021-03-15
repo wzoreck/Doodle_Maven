@@ -114,7 +114,7 @@ public class TeacherMainController implements Initializable {
 	private void createNewCourse() {
 		try {
 			CreateNewCourseController.setUser(teacher);
-
+			updateMyCourses();
 			Stage stage = new Stage();
 			FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("createNewCourse.fxml"));
 			Scene scene = new Scene(fxmlLoader.load());
